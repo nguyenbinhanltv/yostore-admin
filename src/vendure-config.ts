@@ -19,7 +19,7 @@ import { AnalyticsPlugin } from './analytics/analytics.plugin';
 import { WebhookPlugin } from 'vendure-plugin-webhook';
 import { PublicStockPlugin } from 'vendure-plugin-public-stock';
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT as unknown as number || 3000;
 export const config: VendureConfig = {
     orderOptions: {
         stockAllocationStrategy: new CustomStockAllocationStrategy()
