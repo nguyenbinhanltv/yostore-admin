@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./dist/index",
+    "postinstall": "npm run build",
     "serve": "nodemon -e ts --watch '../packages/' --watch './src/' --exec \"yarn build && node ./dist/index\"",
     "copy": "yarn copyfiles -u 1 src/__admin-ui/dist/**/* dist",
     "build": "yarn tsc && yarn copy",
