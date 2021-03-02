@@ -7,11 +7,11 @@ import {
     VendureConfig,
 } from '@vendure/core';
 import { EmailPlugin } from '@vendure/email-plugin';
-import { AssetServerPlugin } from '@vendure/asset-server-plugin';
+import { AssetServerPlugin, configureS3AssetStorage } from '@vendure/asset-server-plugin';
 import { AdminUiPlugin } from '@vendure/admin-ui-plugin';
 import path from 'path';
 import { MolliePlugin } from './mollie-payment/mollie.plugin';
-import { GoogleStorageStrategy } from 'vendure-plugin-google-storage-assets';
+import { FirebaseStorageStrategy } from './firebase-storage-strategy/firebase-storage-strategy';
 import { shopsMailHandlers } from "./email/email.handlers";
 import { CustomStockAllocationStrategy } from './stock-allocation/custom-stock-allocation.strategy';
 import { ChannelConfigPlugin } from './channel-config/channel-config.plugin';
@@ -67,9 +67,15 @@ export const config: VendureConfig = {
         ChannelConfigPlugin,
         AnalyticsPlugin,
         AssetServerPlugin.init({
-            storageStrategyFactory: () => new GoogleStorageStrategy('yostore-admin-assets'),
+            storageStrategyFactory: configureS3AssetStorage({
+                bucket: 'yostore-assets',
+                credentials: {
+                    accessKeyId: process.env.AWS_ACCESS_KEY_ID as string,
+                    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY as string,
+                },
+            }),
             route: 'assets',
-            assetUploadDir: '/tmp/vendure/assets',
+            assetUploadDir: path.join(__dirname, 'assets'),
             port: 3001,
         }),
         DefaultJobQueuePlugin,
