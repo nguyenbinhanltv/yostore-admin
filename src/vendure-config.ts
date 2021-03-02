@@ -70,7 +70,7 @@ export const config: VendureConfig = {
             storageStrategyFactory: configureS3AssetStorage({
                 bucket: 'yostore-assets',
                 credentials: {
-                    accessKeyId: process.env.AWS_ACCESS_KEY_ID as string,
+                    accessKeyId: process.env.AWS_ACCESS_KEY_IDD as string,
                     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY as string,
                 },
             }),
