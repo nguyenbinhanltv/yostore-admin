@@ -1,6 +1,5 @@
 import { AssetStorageStrategy } from '@vendure/core';
 import * as admin from "firebase-admin";
-import * as serviceAccount from '../serviceAccount.json';
 import { Request } from 'express';
 import { Stream } from 'stream';
 import * as tmp from 'tmp';
@@ -12,10 +11,6 @@ export class FirebaseStorageStrategy implements AssetStorageStrategy {
     urlPrefix = 'https://firebasestorage.googleapis.com';
 
     constructor(public bucketName: string) {
-        admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
-            storageBucket: 'yostore-admin.appspot.com'
-        });
         this.storage = admin.storage();
     }
 
