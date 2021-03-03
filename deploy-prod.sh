@@ -1,6 +1,6 @@
 #!/bin/bash
 export ENV_VARS=$(paste -sd, .env)
-gcloud run deploy shops-api \
+gcloud run deploy yostore-api \
             --quiet \
             --image "gcr.io/yo-store/yostore-admin:latest" \
             --region "europe-west1" \
