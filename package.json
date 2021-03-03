@@ -32,6 +32,7 @@
     "firebase-admin": "^9.5.0",
     "fs-capacitor": "^6.2.0",
     "localtunnel": "^2.0.0",
+    "nodemon": "^2.0.4",
     "pg": "^8.5.1",
     "tmp": "^0.2.1",
     "typescript": "4.0.3",
@@ -39,7 +40,6 @@
     "vendure-plugin-webhook": "^0.18.7"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4",
     "ts-node": "^9.0.0"
   },
   "engines": {
